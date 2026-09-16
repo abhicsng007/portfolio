@@ -18,9 +18,9 @@ export const defaults = {
   },
   links: {
     github: "https://github.com/abhicsng007",
-    linkedin: "",
-    devpost: "",
-    website: "",
+    linkedin: "https://www.linkedin.com/in/abhicsng/",
+    devpost: "https://devpost.com/abhicsng007",
+    website: "https://portfolio-wheat-six-2yr4wmb87a.vercel.app/",
     youtube: "",
   },
   github: {
@@ -228,7 +228,7 @@ export const defaults = {
       id: "lets-sing-ai",
       source: "github",
       name: "LetsSingAI",
-      client: "Professional Agents · AWS",
+      client: "Agents for Humans · AWS",
       year: "2026",
       tag: "Vocal coach agent",
       description:

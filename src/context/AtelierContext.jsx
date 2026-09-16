@@ -34,7 +34,7 @@ function mergeLoaded(saved) {
     ...structuredClone(defaults),
     ...saved,
     profile: { ...defaults.profile, ...(saved.profile || {}) },
-    links: { ...defaults.links, ...(saved.links || {}) },
+    links: fillBlanks(saved.links || {}, defaults.links),
     github: { ...defaults.github, ...(saved.github || {}) },
     skills: defaults.skills,
     experience: saved.experience ?? defaults.experience,
