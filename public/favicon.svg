@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <path d="M10 4h44v10L54 60H10L4 14z" fill="#07090d"/>
+  <path d="M10 4h44v10L54 60H10L4 14z" stroke="#C8F04D" stroke-width="2"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Tektur, sans-serif" font-size="22" font-weight="700" fill="#C8F04D">A</text>
+</svg>
