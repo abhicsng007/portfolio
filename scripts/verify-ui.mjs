@@ -63,10 +63,8 @@ const certLink = await page.evaluate(() =>
 if (!certLink) issues.push("certificate link missing")
 
 const plates = await page.evaluate(() => document.getElementById("plates")?.innerText || "")
-if (!plates.includes("AIWEX")) issues.push("AIWEX project missing")
-if (!plates.includes("xStoreAgent")) issues.push("xStoreAgent project missing")
-if (plates.includes("SafeJourney") || plates.includes("LetsSingAI") || plates.includes("AssetsCurator")) {
-  issues.push("extra projects still visible on missions")
+for (const name of ["SafeJourney", "AIWEX", "xStoreAgent", "LetsSingAI", "AssetsCurator"]) {
+  if (!plates.includes(name)) issues.push(`${name} project missing`)
 }
 
 const skills = await page.evaluate(() => document.getElementById("instruments")?.innerText || "")
@@ -85,7 +83,7 @@ await page.evaluate(() => {
 })
 await new Promise((r) => setTimeout(r, 600))
 await page.screenshot({ path: path.join(out, "10-project-modal.png") })
-const modal = await page.evaluate(() => document.body.innerText.includes("AIWEX"))
+const modal = await page.evaluate(() => document.body.innerText.includes("SafeJourney"))
 if (!modal) issues.push("project modal did not open")
 await page.evaluate(() => {
   ;[...document.querySelectorAll("button")].find((b) => b.textContent.trim() === "Close")?.click()
