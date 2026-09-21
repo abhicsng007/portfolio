@@ -10,6 +10,7 @@ import Practice from "./components/Practice"
 import Skills from "./components/Skills"
 import Experience from "./components/Experience"
 import Education from "./components/Education"
+import Achievements from "./components/Achievements"
 import Work from "./components/Work"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
@@ -56,6 +57,7 @@ function Shell() {
         <Skills />
         <Experience />
         <Education />
+        <Achievements />
         <Work />
         <Contact />
       </main>

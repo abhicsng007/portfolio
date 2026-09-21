@@ -6,6 +6,7 @@ const rarity = {
   Backend: { rank: "A", label: "Rare", xp: 70 },
   Data: { rank: "B", label: "Uncommon", xp: 62 },
   DevOps: { rank: "A", label: "Rare", xp: 78 },
+  "Agentic AI": { rank: "S", label: "Legendary", xp: 88 },
   Quality: { rank: "B", label: "Uncommon", xp: 68 },
   "AI APIs": { rank: "A", label: "Rare", xp: 74 },
 }

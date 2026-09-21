@@ -53,12 +53,17 @@ export default function ProjectModal() {
               </button>
             </div>
             {embed ? (
-              <div className="relative aspect-video w-full overflow-hidden bg-paper-deep">
+              <div className="relative aspect-video max-h-[240px] w-full overflow-hidden bg-paper-deep sm:max-h-[320px]">
+                <img
+                  src={project.image || "/fallback.svg"}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
                 <iframe
                   key={project.id}
                   title={`${project.name} demo`}
                   src={`${embed}?rel=0`}
-                  className="h-full w-full"
+                  className="relative h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
@@ -81,6 +86,18 @@ export default function ProjectModal() {
                 {project.tag || project.client} · {project.year}
               </p>
               <h3 className="mt-2 font-display text-[2rem] font-semibold tracking-wide">{project.name}</h3>
+              <div className="mt-4 flex flex-wrap gap-5 font-display text-[11px] font-semibold uppercase tracking-[0.16em]">
+                <External href={project.live} className="text-oxide">
+                  Play live
+                </External>
+                <External href={project.github} className="text-ink">
+                  Source
+                </External>
+                <External href={project.youtube} className="text-ink">
+                  Replay
+                </External>
+                <External href={project.devpost}>Devpost</External>
+              </div>
               <p className="mt-4 leading-relaxed text-ink-soft">{project.description}</p>
 
               {project.highlights?.length > 0 && (
@@ -112,19 +129,6 @@ export default function ProjectModal() {
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-8 flex flex-wrap gap-5 font-display text-[11px] font-semibold uppercase tracking-[0.16em]">
-                <External href={project.live} className="text-oxide">
-                  Play live
-                </External>
-                <External href={project.github} className="text-ink">
-                  Source
-                </External>
-                <External href={project.youtube} className="text-ink">
-                  Replay
-                </External>
-                <External href={project.devpost}>Devpost</External>
-              </div>
             </div>
           </motion.article>
         </motion.div>

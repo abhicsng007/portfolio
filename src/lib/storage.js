@@ -1,4 +1,4 @@
-const KEY = "ac-folio-v3"
+const KEY = "ac-folio-v4"
 
 export function loadAtelier() {
   try {

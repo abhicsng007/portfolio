@@ -39,6 +39,16 @@ export default function Education() {
                     </h3>
                     {ed.degree && <p className="mt-2 text-[16px] text-ink">{ed.degree}</p>}
                     {ed.note && <p className="mt-1.5 text-sm text-ink-soft">{ed.note}</p>}
+                    {ed.href && (
+                      <a
+                        href={ed.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 inline-flex font-display text-[11px] font-semibold uppercase tracking-[0.16em] text-oxide ink-underline"
+                      >
+                        View certificate
+                      </a>
+                    )}
                   </div>
                   {(ed.grade || ed.detail) && (
                     <div className="border border-gold/30 bg-gold/10 px-5 py-4 text-center lg:min-w-[150px]">
@@ -59,7 +69,12 @@ export default function Education() {
                           </p>
                         </>
                       ) : (
-                        <p className="text-sm">{ed.detail}</p>
+                        <>
+                          <p className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                            Certified
+                          </p>
+                          <p className="mt-2 text-sm">{ed.detail}</p>
+                        </>
                       )}
                     </div>
                   )}

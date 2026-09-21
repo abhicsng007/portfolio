@@ -33,7 +33,7 @@ export default function Contact() {
   return (
     <section id="post" className="px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1120px]">
-        <Folio n="05" label="Co-op" />
+        <Folio n="06" label="Co-op" />
         <Reveal>
           <h2 className="mt-6 font-display text-[2.2rem] font-semibold leading-[1.1] tracking-wide sm:text-5xl lg:text-[3.2rem]">
             Invite to party.
@@ -41,7 +41,7 @@ export default function Contact() {
         </Reveal>
         <Reveal delay={0.06}>
           <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink-soft">
-            Queue is open for full-time frontend roles. Drop a note — I’ll accept from inbox.
+            Queue is open for full-time frontend and agentic AI roles. Drop a note — I’ll accept from inbox.
           </p>
         </Reveal>
 

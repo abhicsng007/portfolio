@@ -41,6 +41,7 @@ await shotSection("practice", "04-practice.png")
 await shotSection("instruments", "05-instruments.png")
 await shotSection("tenure", "06-tenure.png")
 await shotSection("school", "07-school.png")
+await shotSection("feats", "07b-feats.png")
 await shotSection("plates", "08-plates.png")
 await shotSection("post", "09-contact.png")
 
@@ -52,6 +53,25 @@ if (!tenure.includes("Tata Consultancy")) issues.push("TCS experience missing")
 
 const school = await page.evaluate(() => document.getElementById("school")?.innerText || "")
 if (!school.includes("Netaji Subhas")) issues.push("education missing")
+if (!school.includes("Future AWS Agent Engineer")) issues.push("nanodegree missing from education")
+
+const feats = await page.evaluate(() => document.getElementById("feats")?.innerText || "")
+if (!feats.includes("top 4,500") && !feats.includes("top 4500")) issues.push("scholarship achievement missing")
+const certLink = await page.evaluate(() =>
+  [...document.querySelectorAll("a")].some((a) => (a.href || "").includes("udacity.com/certificate")),
+)
+if (!certLink) issues.push("certificate link missing")
+
+const plates = await page.evaluate(() => document.getElementById("plates")?.innerText || "")
+if (!plates.includes("AIWEX")) issues.push("AIWEX project missing")
+if (!plates.includes("xStoreAgent")) issues.push("xStoreAgent project missing")
+if (plates.includes("SafeJourney") || plates.includes("LetsSingAI") || plates.includes("AssetsCurator")) {
+  issues.push("extra projects still visible on missions")
+}
+
+const skills = await page.evaluate(() => document.getElementById("instruments")?.innerText || "")
+if (!skills.includes("Amazon Bedrock")) issues.push("Amazon Bedrock skill missing")
+if (!skills.includes("Agentic AI")) issues.push("Agentic AI skill group missing")
 
 const contact = await page.evaluate(() => document.getElementById("post")?.innerText || "")
 if (!contact.includes("abhicsng007@gmail.com")) issues.push("email missing")
@@ -65,7 +85,7 @@ await page.evaluate(() => {
 })
 await new Promise((r) => setTimeout(r, 600))
 await page.screenshot({ path: path.join(out, "10-project-modal.png") })
-const modal = await page.evaluate(() => document.body.innerText.includes("Enterprise tool surfaces"))
+const modal = await page.evaluate(() => document.body.innerText.includes("AIWEX"))
 if (!modal) issues.push("project modal did not open")
 await page.evaluate(() => {
   ;[...document.querySelectorAll("button")].find((b) => b.textContent.trim() === "Close")?.click()

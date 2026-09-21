@@ -7,7 +7,7 @@ export default function Practice() {
   const stats = [
     { render: () => <CountUp to={2} pad={2} />, label: "Years in production", tag: "LVL" },
     { render: () => <CountUp to={30} suffix="%" />, label: "UI performance lift", tag: "ATK" },
-    { render: () => <CountUp to={9.11} decimals={2} />, label: "GPA · NSUT East", tag: "INT" },
+    { render: () => <CountUp to={4500} />, label: "of 100k+ AWS applicants", tag: "RNK" },
     { render: () => "0d", label: "Notice period", tag: "SPD" },
   ]
 
@@ -18,7 +18,7 @@ export default function Practice() {
         <div className="mt-6 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <Reveal>
             <h2 className="font-display text-[2.2rem] font-semibold leading-[1.1] tracking-wide sm:text-5xl lg:text-[3.2rem]">
-              Interfaces that stay fast{" "}
+              Interfaces and agents that hold up{" "}
               <span className="text-oxide">after the demo.</span>
             </h2>
           </Reveal>

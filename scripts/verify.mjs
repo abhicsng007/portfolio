@@ -109,7 +109,7 @@ await page.evaluate(() => {
 })
 await new Promise((r) => setTimeout(r, 700))
 await page.screenshot({ path: path.join(out, "10-project-modal.png") })
-const modal = await page.evaluate(() => document.body.innerText.includes("Enterprise tool surfaces"))
+const modal = await page.evaluate(() => document.body.innerText.includes("AIWEX"))
 if (!modal) issues.push("project modal did not open")
 await page.evaluate(() => {
   [...document.querySelectorAll("button")].find((b) => b.textContent.trim() === "Close")?.click()

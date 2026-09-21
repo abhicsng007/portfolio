@@ -14,18 +14,18 @@ function fillBlanks(savedItem, fallback) {
 }
 
 function mergeById(saved, fallback) {
-  if (!saved?.length) return fallback
-  const byId = new Map(fallback.map((item) => [item.id, item]))
-  return saved.map((item) => fillBlanks(item, byId.get(item.id)))
-}
-
-function mergeProjects(saved, fallback) {
   if (!saved?.length) return structuredClone(fallback)
   const savedById = new Map(saved.map((item) => [item.id, item]))
   const fallbackIds = new Set(fallback.map((item) => item.id))
   const merged = fallback.map((item) => fillBlanks(savedById.get(item.id) || {}, item))
   const extras = saved.filter((item) => !fallbackIds.has(item.id))
   return [...merged, ...extras]
+}
+
+function mergeProjects(saved, fallback) {
+  if (!saved?.length) return structuredClone(fallback)
+  const savedById = new Map(saved.map((item) => [item.id, item]))
+  return fallback.map((item) => fillBlanks(savedById.get(item.id) || {}, item))
 }
 
 function mergeLoaded(saved) {
@@ -39,6 +39,7 @@ function mergeLoaded(saved) {
     skills: defaults.skills,
     experience: saved.experience ?? defaults.experience,
     education: mergeById(saved.education, defaults.education),
+    achievements: mergeById(saved.achievements, defaults.achievements),
     projects: mergeProjects(saved.projects, defaults.projects),
   }
 }
@@ -79,6 +80,7 @@ export function AtelierProvider({ children }) {
         setData((d) => ({ ...d, github: { ...d.github, ...patch } })),
       setExperience: (experience) => setData((d) => ({ ...d, experience })),
       setEducation: (education) => setData((d) => ({ ...d, education })),
+      setAchievements: (achievements) => setData((d) => ({ ...d, achievements })),
       setProjects: (projects) => setData((d) => ({ ...d, projects })),
       upsertProjects: (incoming) =>
         setData((d) => {

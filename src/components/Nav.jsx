@@ -8,8 +8,9 @@ const items = [
   { href: "#practice", n: "01", label: "Lore" },
   { href: "#instruments", n: "02", label: "Loadout" },
   { href: "#tenure", n: "03", label: "Campaign" },
-  { href: "#plates", n: "04", label: "Missions" },
-  { href: "#post", n: "05", label: "Co-op" },
+  { href: "#feats", n: "04", label: "Feats" },
+  { href: "#plates", n: "05", label: "Missions" },
+  { href: "#post", n: "06", label: "Co-op" },
 ]
 
 export default function Nav() {
@@ -61,7 +62,7 @@ export default function Nav() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-4 xl:gap-6 lg:flex">
             {items.map((item) => {
               const on = active === item.href
               return (

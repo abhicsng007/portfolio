@@ -5,9 +5,9 @@ export default function Schematic({ ready, profile }) {
   const reduce = useReducedMotion()
   const stats = [
     { label: "React", value: 92 },
-    { label: "Performance", value: 88 },
+    { label: "Agentic AI", value: 88 },
+    { label: "AWS / Bedrock", value: 84 },
     { label: "Delivery", value: 90 },
-    { label: "Systems", value: 76 },
   ]
 
   return (
@@ -43,7 +43,7 @@ export default function Schematic({ ready, profile }) {
             <div>
               <p className="font-display text-5xl font-semibold tracking-wide text-oxide">LV.04</p>
               <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft">
-                Frontend engineer
+                {profile?.role || "Frontend engineer"}
               </p>
             </div>
             <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-gold">Rank S</p>

@@ -12,6 +12,7 @@ const tabs = [
   { id: "plates", label: "Work" },
   { id: "tenure", label: "Exp" },
   { id: "school", label: "Edu" },
+  { id: "feats", label: "Feats" },
 ]
 
 export default function Atelier() {
@@ -74,6 +75,7 @@ export default function Atelier() {
               {tab === "plates" && <PlatesForm />}
               {tab === "tenure" && <TenureForm />}
               {tab === "school" && <SchoolForm />}
+              {tab === "feats" && <FeatsForm />}
             </div>
 
             <footer className="flex flex-wrap gap-2 border-t border-ink/8 px-6 py-4">
@@ -449,7 +451,7 @@ function SchoolForm() {
   function add() {
     setEducation([
       ...data.education,
-      { id: `ed-${Date.now()}`, school: "", degree: "", years: "", note: "", detail: "" },
+      { id: `ed-${Date.now()}`, school: "", degree: "", years: "", note: "", detail: "", href: "" },
     ])
   }
 
@@ -480,11 +482,97 @@ function SchoolForm() {
             <input className={inputClass} value={ed.note} onChange={(e) => update(ed.id, { note: e.target.value })} />
           </Field>
           <Field label="GPA / honors">
-            <input className={inputClass} value={ed.detail} onChange={(e) => update(ed.id, { detail: e.target.value })} />
+            <input className={inputClass} value={ed.detail || ""} onChange={(e) => update(ed.id, { detail: e.target.value })} />
+          </Field>
+          <Field label="Certificate URL">
+            <input className={inputClass} value={ed.href || ""} onChange={(e) => update(ed.id, { href: e.target.value })} />
           </Field>
           <button
             type="button"
             onClick={() => setEducation(data.education.filter((e) => e.id !== ed.id))}
+            className="text-[12px] font-medium text-ink-soft hover:text-ink"
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function FeatsForm() {
+  const { data, setAchievements } = useAtelier()
+
+  function add() {
+    setAchievements([
+      ...data.achievements,
+      {
+        id: `feat-${Date.now()}`,
+        title: "",
+        org: "",
+        year: "",
+        rank: "A",
+        featured: false,
+        detail: "",
+        href: "",
+        hrefLabel: "View certificate",
+      },
+    ])
+  }
+
+  function update(id, patch) {
+    setAchievements(data.achievements.map((item) => (item.id === id ? { ...item, ...patch } : item)))
+  }
+
+  return (
+    <div className="space-y-6">
+      <p className="text-sm text-ink-soft">Scholarships, certificates, and other trophies shown on the Feats section.</p>
+      <button type="button" onClick={add} className="btn btn-secondary h-9 px-3 text-[12px]">
+        Add feat
+      </button>
+      {(data.achievements || []).map((item) => (
+        <div key={item.id} className="space-y-3 border border-ink/10 p-4">
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={Boolean(item.featured)}
+              onChange={(e) => update(item.id, { featured: e.target.checked })}
+            />
+            Featured
+          </label>
+          <Field label="Title">
+            <input className={inputClass} value={item.title} onChange={(e) => update(item.id, { title: e.target.value })} />
+          </Field>
+          <Field label="Organization">
+            <input className={inputClass} value={item.org} onChange={(e) => update(item.id, { org: e.target.value })} />
+          </Field>
+          <Field label="Year">
+            <input className={inputClass} value={item.year} onChange={(e) => update(item.id, { year: e.target.value })} />
+          </Field>
+          <Field label="Rank">
+            <input className={inputClass} value={item.rank || ""} onChange={(e) => update(item.id, { rank: e.target.value })} />
+          </Field>
+          <Field label="Detail">
+            <textarea
+              className={inputClass}
+              rows={3}
+              value={item.detail}
+              onChange={(e) => update(item.id, { detail: e.target.value })}
+            />
+          </Field>
+          <Field label="Certificate URL">
+            <input className={inputClass} value={item.href || ""} onChange={(e) => update(item.id, { href: e.target.value })} />
+          </Field>
+          <Field label="Link label">
+            <input
+              className={inputClass}
+              value={item.hrefLabel || ""}
+              onChange={(e) => update(item.id, { hrefLabel: e.target.value })}
+            />
+          </Field>
+          <button
+            type="button"
+            onClick={() => setAchievements(data.achievements.filter((feat) => feat.id !== item.id))}
             className="text-[12px] font-medium text-ink-soft hover:text-ink"
           >
             Remove
